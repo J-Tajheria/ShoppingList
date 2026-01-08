@@ -1,0 +1,49 @@
+# Shopping List
+
+Simple client-side Shopping List app that stores items in Local Storage. Add, edit, remove, clear and filter items in the list.
+
+## Features
+- Add new items
+- Edit existing items
+- Remove single items
+- Clear all items
+- Live filter of items
+- Persist items via Local Storage
+
+## Files
+- [index.html](index.html) — main HTML markup.
+- [main.js](main.js) — application logic and event handlers.
+- [style.css](style.css) — basic styling.
+- [.vscode/settings.json](.vscode/settings.json) — Live Server port config.
+- [images/](images/) — project images (icons/assets).
+
+## Quick start
+1. Open [index.html](index.html) in your browser or use Live Server on port specified in [.vscode/settings.json](.vscode/settings.json) (default: 5501).
+2. Type an item into the input and click "Add Item".
+3. Click an item to edit it, or click the red X to remove it.
+4. Use the "Filter Items" input to search the list.
+5. Click "Clear All" to remove all items.
+
+## Key implementation points
+- Items are stored as an array in Local Storage under the key `items`.
+- Main functions in [main.js](main.js):
+  - [`onAddItemSubmit`](main.js) — handles add/update form submissions.
+  - [`addItemToDOM`](main.js) — creates and appends a list item element.
+  - [`addItemToStorage`](main.js) — persists item to Local Storage.
+  - [`getItemsFromStorage`](main.js) — reads items from Local Storage.
+  - [`displayItems`](main.js) — renders stored items on load.
+  - [`createButton`](main.js) / [`createIcon`](main.js) — helper DOM builders.
+  - [`onClickItem`](main.js) — delegates list clicks for edit/remove.
+  - [`setItemToEdit`](main.js) — enters edit mode for an item.
+  - [`removeItem`](main.js) / [`removeItemFromStorage`](main.js) — remove logic.
+  - [`clearItems`](main.js) — clears DOM and Local Storage.
+  - [`checkUI`](main.js) — updates button/input visibility.
+  - [`filterItems`](main.js) — live filtering.
+
+## Notes & tips
+- Duplicate prevention is case-sensitive per current implementation.
+- Editing an item removes the old entry from storage and adds the updated text.
+- If you want case-insensitive duplicate checking, modify [`checkIfItemExists`](main.js) accordingly.
+
+## License
+Open for personal use / learning. Tailor as needed.
