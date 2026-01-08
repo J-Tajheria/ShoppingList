@@ -28,6 +28,11 @@ function onAddItemSubmit(e){
         itemToEdit.classList.remove('edit-mode');
         itemToEdit.remove()
         isEditMode = false;
+    } else {
+        if(checkIfItemExists(newItem)){
+            alert('That item already exists!');
+            return;
+        }
     }
     // create dom element
     addItemToDOM(newItem);
@@ -103,6 +108,12 @@ function onClickItem(e){
     }
 }
 
+function checkIfItemExists(item){
+    const itemsFromStorage = getItemsFromStorage();
+
+    return itemsFromStorage.includes(item);
+    }
+
 function setItemToEdit(item){
     isEditMode = true;
 
@@ -149,7 +160,7 @@ function clearItems(e){
 
 function checkUI(){
     itemInput.value = '';
-    
+
     const items = itemList.querySelectorAll('li');
 
     if(items.length === 0){
