@@ -6,6 +6,7 @@ const itemInput = document.getElementById('item-input');
 const formButton = document.querySelector('form button');
 const filterInput = document.getElementById('filter');
 const itemList = document.getElementById('item-list');
+const clearButton = document.getElementById('clear');
 
 function addItem(e){
     // Prevent form from submitting
@@ -28,6 +29,7 @@ function addItem(e){
     li.appendChild(button);
     itemList.appendChild(li);
 
+    checkUI();
     // Clear input
     itemInput.value = '';
 }
@@ -48,5 +50,39 @@ function createIcon(classes){
     icon.className = classes;
     return icon;
 }
+
+function removeitem(e){
+    if(e.target.parentElement.classList.contains('remove-item')){
+        if (confirm('Are you sure?')){
+            e.target.parentElement.parentElement.remove();
+            checkUI();
+        }
+    }
+}
+
+function clearItems(e){
+    while(itemList.firstChild){
+        itemList.firstChild.remove()
+    }
+    checkUI();
+}
+
+function checkUI(){
+    const items = itemList.querySelectorAll('li');
+
+    if(items.length === 0){
+        clearButton.style.display = 'none';
+        filterInput.style.display = 'none';
+    } else {
+        clearButton.style.display = 'block';
+        filterInput.style.display = 'block';
+
+    }
+}
+
 // Event Listeners
 form.addEventListener('submit', addItem);
+itemList.addEventListener('click', removeitem);
+clearButton.addEventListener('click', clearItems);
+
+checkUI();
